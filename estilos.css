@@ -10,6 +10,10 @@ body {
     overflow-x: hidden;
 }
 
+link[rel="icon"] {
+    border-radius: 50%;
+}
+
 header {
     background-color: #333;
     color: white;
