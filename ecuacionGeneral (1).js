@@ -115,6 +115,24 @@ function cuadricaSinCentro(A, B, C, D, E, F, G) {
 }
 
 function ecuacionGeneral(A, B, C, D, E, F, G) {
+
+    if (A === 0 && B === 0 && C === 0 && D === 0 && E === 0 && F === 0 && G === 0) {
+        return {
+            figura: "Punto de Origen",
+            punto: { nombre: "Origen", letra: "O", pos: [0, 0, 0] },
+            info: "El punto está en el origen.",
+        };
+    }
+
+    // Check if the quadratic surface reduces to a point (constant term only)
+    if (A === 0 && B === 0 && C === 0 && D === 0 && E === 0 && F === 0) {
+        return {
+            figura: "Punto",
+            punto: { nombre: "Punto", letra: "P", pos: [D / G, E / G, F / G] },
+            info: "La superficie es un punto en el espacio.",
+        };
+    }
+
     let figura = "Desconocida";
     let punto = null;
     let info = null;
@@ -569,8 +587,23 @@ function clasificarCuadrica() {
     const resultadoElement = document.getElementById('resultado');
     resultadoElement.innerHTML = `
         <p>Figura: ${resultado.figura}</p>
+        ${resultado.punto ? `<p>Punto: (${resultado.punto.pos.join(', ')})</p>` : ''}
         ${resultado.info ? `<p>Información: ${resultado.info}</p>` : ''}
+        <p><strong>Coeficientes:</strong></p>
+        <ul>
+            <li>A: ${coefA}</li>
+            <li>B: ${coefB}</li>
+            <li>C: ${coefC}</li>
+            <li>D: ${coefD}</li>
+            <li>E: ${coefE}</li>
+            <li>F: ${coefF}</li>
+            <li>G: ${coefG}</li>
+        </ul>
     `;
 
-   
+    // Agrega un estilo para mejorar la presentación
+    resultadoElement.style.border = '1px solid #ccc';
+    resultadoElement.style.padding = '10px';
+    resultadoElement.style.marginTop = '10px';
+    resultadoElement.style.borderRadius = '5px';
 }
